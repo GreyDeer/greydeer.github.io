@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>GreyDeer的个人博客</title>
+  <title>力扣31-下一个排列题解 | GreyDeer的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="GreyDeer的个人博客">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="题目描述-31.实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。必须原地修改，只允许使用额外常数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="力扣31-下一个排列题解">
+<meta property="og:url" content="http://example.com/2020/11/17/%E5%8A%9B%E6%89%A331-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="GreyDeer的个人博客">
+<meta property="og:description" content="题目描述-31.实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。必须原地修改，只允许使用额外常数">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/11/17/assets/leetcode/leetcode-31.png">
+<meta property="article:published_time" content="2020-11-17T15:01:38.000Z">
+<meta property="article:modified_time" content="2020-11-18T04:14:51.725Z">
 <meta property="article:author" content="GreyDeer">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="每日一题">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/17/assets/leetcode/leetcode-31.png">
   
     <link rel="alternative" href="/atom.xml" title="GreyDeer的个人博客" type="application/atom+xml">
   
@@ -153,20 +162,26 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-力扣31-下一个排列题解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-力扣31-下一个排列题解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/17/%E5%8A%9B%E6%89%A331-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E9%A2%98%E8%A7%A3/">力扣31-下一个排列题解</a>
+    <h1 class="article-title" itemprop="name">
+      力扣31-下一个排列题解
     </h1>
   
 
         <!--显示阅读次数-->
+		
+		  <br/>
+		  <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+		  <span class="icon-sort"></span>
+		  <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+		    阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+		  </span>
+		  </a>
 		
 		<!--显示阅读次数完毕-->
         
@@ -179,9 +194,35 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>-31.实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。必须原地修改，只允许使用额外常数</p>
-        
-          <a class="article-more-a" href="/2020/11/17/%E5%8A%9B%E6%89%A331-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E9%A2%98%E8%A7%A3/#more">more >></a>
-        
+<a id="more"></a>
+
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><ul>
+<li><p>示例一</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">Output:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例二</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input：nums = [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">Output：[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例三</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input：nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>]</span><br><span class="line">Output：[<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例四</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input：nums = [<span class="number">1</span>]</span><br><span class="line">Output：[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt;= nums.length &lt;= <span class="number">100</span></span><br><span class="line"><span class="number">0</span> &lt;= nums[i] &lt;= <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>对于numsSize=1,不做处理</li>
+<li>对于numsSize=2，交换这两个元素</li>
+<li>对于其他情况：<br> -从最后一个元素向前遍历，发现某个数比前一个元素大，标记前一个元素的位置，break<br> -从最后一个元素向前遍历，找到大于标记位置的元素却又是最小的元素，因为第一步的遍历每一个元素的前一个都比后一个大，所以这一步找到的第一个满足的元素就是，然后swap并break<br> -若成功找到这个数，则将标记位置之后的元素升序排列；若未找到这个数，则这个数组就是最大排列，直接reverse整个数组</li>
+</ol>
+<h2 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">假设数组为[<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>]</span><br><span class="line">   step1:从后向前找满足前一元素小于其的元素，<span class="number">6</span>满足，所以标记<span class="number">2</span>的位置</span><br><span class="line">   step2:从后面找到第一个大于<span class="number">2</span>的元素，为<span class="number">3</span>，交换<span class="number">2</span>,<span class="number">3</span>,数组变为[<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">2</span>]</span><br><span class="line">   step3:升序排列<span class="number">3</span>后的元素，数组变为[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">   成功求得！</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    temp=*a;</span><br><span class="line">    *a=*b;</span><br><span class="line">    *b=temp;</span><br><span class="line">&#125;  <span class="comment">//swap函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=start,j=end;i&lt;j;i++,j--)&#123;</span><br><span class="line">        swap(&amp;a[i],&amp;a[j]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  <span class="comment">//reverse:逆转a数组start到end的元素</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">    <span class="comment">//正序冒泡排序</span></span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(j=end;j&gt;start;j--)&#123;</span><br><span class="line">    <span class="keyword">for</span>(i=start;i&lt;j;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]&gt;a[i+<span class="number">1</span>])&#123;</span><br><span class="line">                swap(&amp;a[i],&amp;a[i+<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;  <span class="comment">//排序完毕</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(numsSize==<span class="number">1</span>||numsSize==<span class="number">0</span>)  ;</span><br><span class="line">    <span class="keyword">if</span>(numsSize==<span class="number">2</span>)  reverse(nums,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(numsSize&gt;<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> i,loc,j,flag=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=numsSize<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i<span class="number">-1</span>]&lt;nums[i])&#123;</span><br><span class="line">              loc=i<span class="number">-1</span>;</span><br><span class="line">              flag=<span class="number">1</span>;</span><br><span class="line">              <span class="keyword">break</span>; </span><br><span class="line">            &#125;&#125;</span><br><span class="line">        <span class="keyword">for</span>(j=numsSize<span class="number">-1</span>;j&gt;loc;j--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j]&gt;nums[loc])&#123;</span><br><span class="line">              swap(&amp;nums[j],&amp;nums[loc]);</span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag==<span class="number">1</span>)</span><br><span class="line">        sort(nums,loc+<span class="number">1</span>,numsSize<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(flag==<span class="number">0</span>)</span><br><span class="line">        reverse(nums,<span class="number">0</span>,numsSize<span class="number">-1</span>);</span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="../assets/leetcode/leetcode-31.png" alt="运行结果"></p>
+
       
 
       
@@ -211,16 +252,65 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/17/%E5%8A%9B%E6%89%A331-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E9%A2%98%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/17/%E5%8A%9B%E6%89%A331-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -240,8 +330,14 @@
 
 
 
+  
+  
+  
 
   
+
+  
+
   
 
 
@@ -267,8 +363,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
